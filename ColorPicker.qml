@@ -108,7 +108,7 @@ Item {
 
     RowLayout {
         id: rowLayout
-        spacing: 110
+        spacing: 15
         Layout.topMargin: 10
 
         ToolButton {
@@ -133,7 +133,7 @@ Item {
           id: history
           swatchSize: 30
           onColorChanged: internal.setColor(color)
-          implicitWidth: 30
+          implicitWidth: 130
           implicitHeight: 30
         }
     }
