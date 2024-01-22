@@ -63,6 +63,7 @@ Control {
             id: sampler
             anchors.fill: parent
             color: model.color
+            radius: 5
           }
 
           Item {

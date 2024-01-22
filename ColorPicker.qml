@@ -106,18 +106,44 @@ Item {
 //      }
 //    }
 
-    ColorHistory {
-      id: history
-      swatchSize: 30
-      visible: false
-      onColorChanged: internal.setColor(color)
-      width: 5
-      height: 5
-    }
+    RowLayout {
+        id: rowLayout
+        spacing: 110
+        Layout.topMargin: 10
 
+        ToolButton {
+          id: eyedrop
+          width: 48
+          height: width
+          padding: 0
+          horizontalPadding: 0
+          verticalPadding: 0
+          checkable: true
+          display: AbstractButton.IconOnly
+          icon.source: "assets/eyedropper.svg"
+          action: pickingAction
+
+          ToolTip.delay: 1500
+          ToolTip.timeout: 3000
+          ToolTip.text: "Shortcut \"P\""
+          ToolTip.visible: hovered
+        }
+
+        ColorHistory {
+          id: history
+          swatchSize: 30
+          onColorChanged: internal.setColor(color)
+          implicitWidth: 30
+          implicitHeight: 30
+        }
+    }
     Item {
+      //anchors.top: rowLayout.bottom
+      Layout.topMargin: -35
+      //anchors.topMargin: -20
       Layout.fillWidth: true
       Layout.minimumHeight: 250
+
 
       ColorWheel {
         id: colorWheel
@@ -127,43 +153,24 @@ Item {
         onEditFinished: history.addToHistory(internal.color)
       }
 
-      ToolButton {
-        id: eyedrop
-        width: 48
-        height: width
-        padding: 0
-        horizontalPadding: 0
-        verticalPadding: 0
-        checkable: true
-        display: AbstractButton.IconOnly
-        icon.source: "assets/eyedropper.svg"
-        action: pickingAction
-
-        ToolTip.delay: 1500
-        ToolTip.timeout: 3000
-        ToolTip.text: "Shortcut \"P\""
-        ToolTip.visible: hovered
-      }
-
       Label {
         id: label
         anchors.right: txField.left
         anchors.verticalCenter: txField.verticalCenter
-        anchors.rightMargin: 6
+        anchors.rightMargin: 0
         text: "#"
       }
 
       NLTextField {
         id: txField
         anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        horizontalAlignment: Text.AlignHCenter
+        anchors.horizontalCenter: parent.horizontalCenter
         inputMask: "HHHHHHhh"
-        width: 90
+//        width: 90
         topPadding: 0
         bottomPadding: 0
-        leftPadding: 6
-        rightPadding: 6
+        leftPadding: 20
+        rightPadding: 0
         text: internal.color.toString().toUpperCase()
         font.pointSize: 10
         onEditingFinished: internal.setColor(`#${text}`)
@@ -179,6 +186,9 @@ Item {
       }
       TabButton {
         text: qsTr("HSV")
+      }
+      background: Rectangle {
+          color: "#1e1e1e"
       }
     }
 

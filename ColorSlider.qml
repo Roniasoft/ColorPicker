@@ -55,9 +55,10 @@ FocusScope {
 
         NLTextField {
           id: textField
+
           z: 1
           Layout.fillHeight: true
-          Layout.preferredWidth: 75
+          Layout.preferredWidth: 50
           topPadding: 0
           bottomPadding: 0
           leftPadding: 6
