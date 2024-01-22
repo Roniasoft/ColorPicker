@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 import ColorTools
+import NodeLink
 
 Control {
   id: root
@@ -106,16 +107,29 @@ Control {
   Menu {
     id: menu
 
-    MenuItem {
-      text: qsTr("Delete")
-      onTriggered: model.removeAt(repeater.index, 1)
+    width: 150
+    padding: 5
+
+    background: Rectangle{
+        anchors.fill: parent
+        radius: NLStyle.radiusAmount.itemButton
+        color: "#262626"
+        border.width: 1
+        border.color: "#1c1c1c"
+    }
+
+    ContextMenuItem {
+      name: qsTr("Delete")
+      iconStr: "\uf1f8"
+      onClicked: model.removeAt(repeater.index, 1)
     }
 
     MenuSeparator {}
 
-    MenuItem {
-      text: qsTr("Clear History")
-      onTriggered: model.clear()
+    ContextMenuItem {
+      name: qsTr("Clear History")
+      iconStr: "\uf51a"
+      onClicked: model.clear()
     }
   }
 }

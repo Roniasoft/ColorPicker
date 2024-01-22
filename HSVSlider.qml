@@ -23,7 +23,7 @@ Item {
     anchors.right: parent.right
     width: parent.width - (hueSlider.leftPadding + hueSlider.spacing)
     height: col.implicitHeight - 1
-    color: "black"
+    color: "#1e1e1e"
   }
 
   ColumnLayout {
