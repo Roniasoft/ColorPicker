@@ -8,9 +8,12 @@ set(CMAKE_CXX_STANDARD 20)
 
 find_package(Qt6 6.2 COMPONENTS Quick REQUIRED)
 
-qt_add_executable(${PROJECT_NAME}
-    main.cpp
-)
+option(BUILD_TESTING "Build tests" ${DEVELOPER_DEFAULTS})
+option(BUILD_EXAMPLES "Build Examples" ${DEVELOPER_DEFAULTS})
+option(BUILD_SHARED_LIBS "Build as shared library" ON)
+option(BUILD_DEBUG_POSTFIX_D "Append d suffix to debug libraries" OFF)
+
+qt_add_library(ColorPicker STATIC)
 
 qt_add_qml_module(${PROJECT_NAME}
     URI ColorTools

@@ -3,12 +3,14 @@ import QtQuick.Controls
 import QtQuick.Layouts
 
 import ColorTools
+import NodeLink
 
 Item {
   id: root
 
   property alias color: internal.color
   property alias picking: eyedrop.checked
+
 
   property var pickingWindow: Window {
     visible: false
@@ -80,33 +82,37 @@ Item {
     spacing: 12
     anchors.fill: parent
 
-    RowLayout {
-      Layout.fillWidth: true
-      spacing: 12
+//    RowLayout {
+//      Layout.fillWidth: true
+//      spacing: 12
 
-      ColorSampler {
-        id: sampler
-        Layout.preferredWidth: 50
-        Layout.preferredHeight: 50
-        radius: 3
-        color: internal.color
-        onColorChanged: internal.setColor(color)
-      }
+//      ColorSampler {
+//        id: sampler
+//        Layout.preferredWidth: 50
+//        Layout.preferredHeight: 50
+//        radius: 3
+//        color: internal.color
+//        onColorChanged: internal.setColor(color)
+//      }
 
-      GroupBox {
-        title: qsTr("History")
-        Layout.fillWidth: true
-        padding: 0
-        topPadding: 24
-        bottomPadding: 0
+//      GroupBox {
+//        title: qsTr("History")
+//        Layout.fillWidth: true
+//        padding: 0
+//        topPadding: 24
+//        bottomPadding: 0
 
-        ColorHistory {
-          id: history
-          anchors.fill: parent
-          swatchSize: 30
-          onColorChanged: internal.setColor(color)
-        }
-      }
+
+//      }
+//    }
+
+    ColorHistory {
+      id: history
+      swatchSize: 30
+      visible: false
+      onColorChanged: internal.setColor(color)
+      width: 5
+      height: 5
     }
 
     Item {
@@ -147,7 +153,7 @@ Item {
         text: "#"
       }
 
-      TextField {
+      NLTextField {
         id: txField
         anchors.bottom: parent.bottom
         anchors.right: parent.right
@@ -161,6 +167,7 @@ Item {
         text: internal.color.toString().toUpperCase()
         font.pointSize: 10
         onEditingFinished: internal.setColor(`#${text}`)
+        color: NLStyle.primaryTextColor
       }
     }
 

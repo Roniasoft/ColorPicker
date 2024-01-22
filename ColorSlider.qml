@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import QtQuick.Shapes
 
 import ColorTools
+import NodeLink
 
 FocusScope {
   id: root
@@ -52,7 +53,7 @@ FocusScope {
         Layout.fillHeight: true
         spacing: 0
 
-        TextField {
+        NLTextField {
           id: textField
           z: 1
           Layout.fillHeight: true
